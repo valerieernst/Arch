@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
 
-const app = () => (
-  <div>
-  </div>
-)
+import Navbar from './navbar.jsx'
 
-export default app;
+export default class App extends Component {
+
+  constructor(props) {
+    super(props);
+    
+    this.state ={}
+  }
+
+  render () {
+    return(
+      <div>
+        <Navbar />
+        {this.props.children}
+      </div>
+    )
+  }
+}
