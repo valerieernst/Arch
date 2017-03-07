@@ -43,7 +43,8 @@ export default class loginForm extends Component {
 //render form using react bootstrap syntax
   render () {
     return (
-      <Form horizontal onSubmit={this.submitLoginForm}>
+      <Form horizontal onSubmit={this.submitLoginForm} className="container login">
+        <h3 className="login_title">Enter Your Username and Password:</h3>
         <FormGroup>
           <Col componentClass={ControlLabel} sm={2}>
             Username

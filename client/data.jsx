@@ -73,21 +73,25 @@ export default class Data extends Component {
   render () {
     return (
       <div className="container">
+      <h2>Select A Project: </h2>
       {this.state.projects.map((project) => {
           return (
             <div key={project.id}>
               <Well>
-                <h2>Project Name: {project.name}</h2>
-                <h3>Project Org: {project.org}</h3>
+                <h3 className="col-md-6">Project Name: {project.name}</h3>
+                <h3 className="col-md-6">Project Org: {project.org}</h3>
                 <Button onClick={() => this.getDetails(project.id)}>Choose this Project</Button>
               </Well>
 
               {this.state.projectSelected && this.state.selectedProjectId === project.id ? 
                 this.state.projectDetails.map((detail) => {
                   return (
-                    <div onClick={() => this.getData(detail.slug)} className="project_detail" key={detail.id}>
-                      <h3>Project Detail Name: {detail.project}</h3>
-                      <h4>Project Device: {detail.device}</h4>
+                    <div>
+                      <h3>Click on a Data Stream to Select It:</h3>
+                      <div onClick={() => this.getData(detail.slug)} className="project_detail" key={detail.id}>
+                        <h3>Project Detail Name: {detail.project}</h3>
+                        <h4>Project Device: {detail.device}</h4>
+                      </div>
                     </div>
                   )
                 })
