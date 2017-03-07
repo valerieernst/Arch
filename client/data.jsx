@@ -40,7 +40,6 @@ export default class Data extends Component {
       }
     })
     .then((resp) => {
-      console.log(resp);
       this.setState({
         projectSelected: true,
         selectedProjectId: projectID,
@@ -49,22 +48,32 @@ export default class Data extends Component {
     })
   }
 
+
   render () {
     return (
-      <div>
+      <div className="container">
       {this.state.projects.map((project) => {
           return (
-            <Well key={project.name}>
-              <h2>{project.name}</h2>
-              <h3>{project.org}</h3>
-              <Button onClick={() => this.getDetails(project.id)}>Choose this Project</Button>
+            <div key={project.id}>
+              <Well>
+                <h2>Project Name: {project.name}</h2>
+                <h3>Project Org: {project.org}</h3>
+                <Button onClick={() => this.getDetails(project.id)}>Choose this Project</Button>
+              </Well>
+
               {this.state.projectSelected && this.state.selectedProjectId === project.id ? 
-                <div>
-                This thing
-                </div>
-            : null}
-            </Well>
-          )
+                this.state.projectDetails.map((detail) => {
+                  return (
+                    <div className="project_detail" key={detail.id}>
+                      <h3>Project Detail Name: {detail.project}</h3>
+                      <h4>Project Device: {detail.device}</h4>
+                    </div>
+                  )
+                })
+              : null}
+
+            </div>
+          );
         })
       }
       </div>
