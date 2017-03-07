@@ -1,6 +1,32 @@
+body {
+  background-image: url('http://www.publicdomainpictures.net/pictures/80000/velka/blue-sky-background-wallpaper.jpg');
+}
+
+.login {
+  max-width: 60%;
+  border: solid #222 1px;
+  border-radius: 5px;
+  padding-top: 15px;
+  padding-right: 35px;
+  background-color: rgba(245, 245, 245, 0.6);
+}
+
+.login_title {
+  padding-bottom: 15px;
+}
+
+.data_box {
+  background-color: rgba(245, 245, 245, 0.6);
+  border-radius: 5px;
+}
+
 .project_detail {
-  border: solid black 1px;
+  border: solid #222 1px;
   border-radius: 5px;
   padding-left: 10px;
   margin-bottom: 25px;
+}
+
+.project_detail:hover {
+  background-color: #f5f5f5; 
 }

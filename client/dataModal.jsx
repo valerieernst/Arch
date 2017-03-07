@@ -8,8 +8,8 @@ export default ({isOpen, closeModal, projectData}) => {
   <div className="static-modal">
     <Modal show={isOpen}>
         <Modal.Header>
-          <Modal.Title>Here's the Data for that Project:</Modal.Title>
-          <Button onClick={closeModal}>Close</Button>
+          <Modal.Title className="col-md-10">Here's the Data for that Project:</Modal.Title>
+          <Button bsStyle="primary" onClick={closeModal}>Close</Button>
         </Modal.Header>
 
         <Modal.Body>
@@ -37,7 +37,7 @@ export default ({isOpen, closeModal, projectData}) => {
 
         <Modal.Footer>
           <div className='modal-body'>
-            <Button onClick={closeModal}>Close</Button>
+            <Button bsStyle="primary" onClick={closeModal}>Close</Button>
           </div>
         </Modal.Footer>
 

@@ -72,7 +72,7 @@ export default class Data extends Component {
 
   render () {
     return (
-      <div className="container">
+      <div className="container data_box">
       <h2>Select A Project: </h2>
       {this.state.projects.map((project) => {
           return (
@@ -80,7 +80,7 @@ export default class Data extends Component {
               <Well>
                 <h3 className="col-md-6">Project Name: {project.name}</h3>
                 <h3 className="col-md-6">Project Org: {project.org}</h3>
-                <Button onClick={() => this.getDetails(project.id)}>Choose this Project</Button>
+                <Button bsStyle="primary" onClick={() => this.getDetails(project.id)}>Choose this Project</Button>
               </Well>
 
               {this.state.projectSelected && this.state.selectedProjectId === project.id ? 

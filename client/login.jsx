@@ -65,7 +65,7 @@ export default class loginForm extends Component {
 
         <FormGroup>
           <Col smOffset={2} sm={10}>
-            <Button type="submit">
+            <Button bsStyle="primary" type="submit">
               Login
             </Button>
           </Col>
