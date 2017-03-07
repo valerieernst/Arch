@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button, Image, Modal, Table } from 'react-bootstrap';
 
-
+//A modal to display the data from the selected stream
+//right now, data display is only a table of timestamp and value
 export default ({isOpen, closeModal, projectData}) => {
-  console.log(projectData);
   return (
   <div className="static-modal">
     <Modal show={isOpen}>

@@ -24,6 +24,7 @@ export default class loginForm extends Component {
     })
   }
 
+//when login form submitted, adds token to session storage and redirects to data page
   submitLoginForm () {
     axios.post('https://iotile.cloud/api/v1/auth/api-jwt-auth/', {
       username: this.state.username,

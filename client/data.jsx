@@ -21,6 +21,7 @@ export default class Data extends Component {
     }
   }
 
+//get project data before component mounts
   componentWillMount () {
     axios.get('https://iotile.cloud/api/v1/project/', {
       headers: {
@@ -37,6 +38,7 @@ export default class Data extends Component {
     })
   }
 
+//get streams for selected project
   getDetails (projectID) {
     axios.get('https://iotile.cloud/api/v1/stream/?project=' + projectID, {
       headers: {
@@ -52,6 +54,7 @@ export default class Data extends Component {
     })
   }
 
+//get stream data for selected stream
   getData (streamSlug) {
     axios.get('https://iotile.cloud/api/v1/stream/' + streamSlug + '/data/', {
       headers: {

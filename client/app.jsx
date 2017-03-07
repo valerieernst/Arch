@@ -10,6 +10,7 @@ export default class App extends Component {
     this.state ={}
   }
 
+//will render component based on react-router
   render () {
     return(
       <div>
