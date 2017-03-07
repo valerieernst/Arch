@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, FormControl, Col, ControlLabel, Button } from 'react-bootstrap';
+import { hashHistory } from 'react-router';
+import axios from 'axios';
 
 export default class loginForm extends Component {
   constructor(props) {
@@ -14,6 +16,7 @@ export default class loginForm extends Component {
     }
   }
 
+//generic handler for changes to form field
   changeHandler (e) {
     const key = e.target.id
     this.setState({
@@ -22,12 +25,25 @@ export default class loginForm extends Component {
   }
 
   submitLoginForm () {
-
+    axios.post('https://iotile.cloud/api/v1/auth/api-jwt-auth/', {
+      username: this.state.username,
+      password: this.state.password
+    })
+    .then((resp) => {
+      //store token in session storage
+      window.sessionStorage.accessToken = resp.data.token;
+      hashHistory.push('/data');
+    })
+    .catch((err) => {
+      console.log(err);
+      alert('Incorrect username/password combination. Please try again!');
+    })
   }
 
+//render form using react bootstrap syntax
   render () {
     return (
-      <Form horizontal>
+      <Form horizontal onSubmit={this.submitLoginForm}>
         <FormGroup>
           <Col componentClass={ControlLabel} sm={2}>
             Username
