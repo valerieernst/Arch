@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Well, Button } from 'react-bootstrap';
 
+import DataModal from './dataModal.jsx';
+
 export default class Data extends Component {
 
   constructor(props) {
@@ -10,7 +12,12 @@ export default class Data extends Component {
     this.getDetails = this.getDetails.bind(this);
 
     this.state = {
-      projects: []
+      projects: [],
+      projectSelected: false,
+      selectedProjectId: '',
+      projectDetails: [],
+      projectData: [{int_value: 'test'}],
+      dataModalOpen: false
     }
   }
 
@@ -22,10 +29,7 @@ export default class Data extends Component {
     })
     .then((resp) => {
       this.setState({
-        projects: resp.data.results,
-        projectSelected: false,
-        selectedProjectId: '',
-        projectDetails: []
+        projects: resp.data.results
       });
     })
     .catch((err) => {
@@ -48,6 +52,23 @@ export default class Data extends Component {
     })
   }
 
+  getData (streamSlug) {
+    axios.get('https://iotile.cloud/api/v1/stream/' + streamSlug + '/data/', {
+      headers: {
+        Authorization: 'JWT ' + window.sessionStorage.accessToken
+      }
+    })
+    .then((resp) => {
+      this.setState({
+        projectData: resp.data.results,
+        dataModalOpen: true
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
 
   render () {
     return (
@@ -64,7 +85,7 @@ export default class Data extends Component {
               {this.state.projectSelected && this.state.selectedProjectId === project.id ? 
                 this.state.projectDetails.map((detail) => {
                   return (
-                    <div className="project_detail" key={detail.id}>
+                    <div onClick={() => this.getData(detail.slug)} className="project_detail" key={detail.id}>
                       <h3>Project Detail Name: {detail.project}</h3>
                       <h4>Project Device: {detail.device}</h4>
                     </div>
@@ -76,6 +97,13 @@ export default class Data extends Component {
           );
         })
       }
+
+      <DataModal 
+        isOpen={this.state.dataModalOpen}
+        closeModal={() => {this.setState({dataModalOpen: false})}}
+        projectData={this.state.projectData}
+      />
+
       </div>
     )
   }
